@@ -2,18 +2,24 @@ name: Validate Markers
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
-
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Check markers exist
         run: |
-          grep -q "<!-- RECENT_ACTIVITY:START -->" README.md
-          grep -q "<!-- RECENT_ACTIVITY:END -->" README.md
+          if ! grep -q "<!-- RECENT_ACTIVITY:START -->" README.md; then
+            echo "❌ START marker missing"
+            exit 1
+          fi
+          if ! grep -q "<!-- RECENT_ACTIVITY:END -->" README.md; then
+            echo "❌ END marker missing"
+            exit 1
+          fi
+          echo "✅ Markers OK"
