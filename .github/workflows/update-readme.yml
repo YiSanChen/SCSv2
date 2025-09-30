@@ -1,0 +1,56 @@
+name: Update README
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: update-readme
+  cancel-in-progress: true
+
+jobs:
+  update:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_ORG: ${{ secrets.GH_ORG }}
+      GH_REPOS: ${{ secrets.GH_REPOS }}
+      GH_ACTIVITY_LIMIT: "20"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install deps
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i -y @octokit/rest >/dev/null 2>&1
+      - name: Generate activity
+        run: node scripts/generate-activity.js
+      - name: Patch README between markers
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),path=require('path');
+          const start='<!-- RECENT_ACTIVITY:START -->', end='<!-- RECENT_ACTIVITY:END -->';
+          const content=fs.readFileSync('README.md','utf8');
+          const md=fs.readFileSync(path.join('.cache','RECENT_ACTIVITY.md'),'utf8');
+          const next=content.replace(new RegExp(`${start}[\\s\\S]*?${end}`),`${start}\n${md}\n${end}`);
+          if(next!==content){fs.writeFileSync('README.md',next);console.log('README changed.');}else{console.log('No change.');}
+          JS
+      - name: Commit changes (only on main push or manual)
+        if: ${{ (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch' }}
+        run: |
+          if git diff --quiet; then
+            echo "No file changes to commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add README.md .cache/activity.json .cache/RECENT_ACTIVITY.md || true
+            git commit -m "chore: update README recent activity [skip ci]" || true
+            git push || true
+          fi
