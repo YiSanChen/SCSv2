@@ -1,0 +1,40 @@
+name: Preview README
+on:
+  pull_request:
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install deps
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i -y @octokit/rest >/dev/null 2>&1
+      - name: Generate activity for preview
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+          GH_ORG: ${{ secrets.GH_ORG }}
+          GH_REPOS: ${{ secrets.GH_REPOS }}
+          GH_ACTIVITY_LIMIT: "20"
+        run: node scripts/generate-activity.js
+      - name: Build preview
+        run: |
+          echo "### README 預覽（自動更新區塊）" > preview.md
+          echo "" >> preview.md
+          cat .cache/RECENT_ACTIVITY.md >> preview.md
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-preview
+          path: preview.md
+      - name: Sticky PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: preview.md
