@@ -5,7 +5,7 @@
 
 [![Update README](https://github.com/YiSanChen/SCSv2/actions/workflows/update-readme.yml/badge.svg)](../../actions/workflows/update-readme.yml)
 [![Preview README](https://github.com/YiSanChen/SCSv2/actions/workflows/preview-readme.yml/badge.svg)](../../actions/workflows/preview-readme.yml)
-[![Validate Markers](https://github.com/YiSanChen/SCSv2/actions/scripts/validate-markers.yml/badge.svg)](../../actions/scripts/validate-markers.yml)
+[![Validate Markers](https://github.com/YiSanChen/SCSv2/actions/workflows/validate-markers.yml/badge.svg)](../../actions/workflows/validate-markers.yml)
 
 
 ---
