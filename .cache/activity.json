@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2025-09-30T14:44:34.177Z",
-  "sources": "YiSanChen/SCSv2\n",
+  "generatedAt": "2025-09-30T14:54:25.510Z",
+  "sources": "YiSanChen/SCSv2,YiSanChen/SkillCheckSystem",
   "items": [
+    {
+      "when": "2025-09-30T14:49:44Z",
+      "text": "PR #16 CLOSED — Update README.md (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T14:45:47Z",
+      "text": "PR #15 CLOSED — Create preview-test (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T14:44:34Z",
+      "text": "Commit b83ac4d — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
+    },
     {
       "when": "2025-09-30T14:44:20Z",
       "text": "Commit 5e69466 — Delete preview-test (YiSanChen/SCSv2)"
@@ -47,10 +59,6 @@
       "text": "Commit 82a9fec — Rename preview-readme.yml to .github/.workflows/preview-readme.yml (YiSanChen/SCSv2)"
     },
     {
-      "when": "2025-09-30T13:28:50Z",
-      "text": "Commit 3c8c6f7 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
-    },
-    {
       "when": "2025-09-30T13:28:36Z",
       "text": "PR #10 MERGED — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)"
     },
@@ -73,14 +81,6 @@
     {
       "when": "2025-09-30T10:52:33Z",
       "text": "PR #5 MERGED — Create preview-readme.yml (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T10:47:37Z",
-      "text": "PR #4 MERGED — Update README.md (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T09:13:59Z",
-      "text": "PR #3 MERGED — Create .gitkeep (YiSanChen/SCSv2)"
     }
   ]
 }
