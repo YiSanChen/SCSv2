@@ -32,4 +32,4 @@
 - PR #4 MERGED — Update README.md (YiSanChen/SCSv2)
 - PR #3 MERGED — Create .gitkeep (YiSanChen/SCSv2)
 - PR #2 MERGED — Create generate-activity.js (YiSanChen/SCSv2)
-<!-- RECENT_ACTIVITY:END -->
+
