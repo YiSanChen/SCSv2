@@ -33,5 +33,5 @@
 - PR #9 MERGED — Update validate-markers.yml (YiSanChen/SCSv2)
 - PR #8 OPEN — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)
 - PR #7 MERGED — Create pull_request_template.md (YiSanChen/SCSv2)
-<!-- RECENT_ACTIVITY:END -->
+
 
