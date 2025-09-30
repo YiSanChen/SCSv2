@@ -9,6 +9,7 @@
 
 
 ---
+> Test change for issue auto-closing
 
 ## 最近活動（自動更新區塊）
 <!-- RECENT_ACTIVITY:START -->
