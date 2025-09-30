@@ -1,7 +1,15 @@
 {
-  "generatedAt": "2025-09-30T10:55:19.610Z",
+  "generatedAt": "2025-09-30T12:40:23.962Z",
   "sources": "YiSanChen/SCSv2\n",
   "items": [
+    {
+      "when": "2025-09-30T12:40:08Z",
+      "text": "Commit e6aead4 — Update README.md (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T10:55:19Z",
+      "text": "Commit 2ecf0e2 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
+    },
     {
       "when": "2025-09-30T10:55:06Z",
       "text": "PR #7 MERGED — Create pull_request_template.md (YiSanChen/SCSv2)"
@@ -59,16 +67,8 @@
       "text": "PR #3 MERGED — Create .gitkeep (YiSanChen/SCSv2)"
     },
     {
-      "when": "2025-09-30T09:13:58Z",
-      "text": "Commit fd68f67 — Merge pull request #3 from YiSanChen/YiSanChen-patch-5 (YiSanChen/SCSv2)"
-    },
-    {
       "when": "2025-09-30T08:59:04Z",
       "text": "PR #2 MERGED — Create generate-activity.js (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T08:59:04Z",
-      "text": "Commit e063358 — Merge pull request #2 from YiSanChen/YiSanChen-patch-4 (YiSanChen/SCSv2)"
     }
   ]
 }

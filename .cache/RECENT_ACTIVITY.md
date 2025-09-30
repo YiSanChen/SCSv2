@@ -1,3 +1,5 @@
+- Commit e6aead4 — Update README.md (YiSanChen/SCSv2)
+- Commit 2ecf0e2 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - PR #7 MERGED — Create pull_request_template.md (YiSanChen/SCSv2)
 - Commit 958c843 — Merge pull request #7 from YiSanChen/YiSanChen-patch-6 (YiSanChen/SCSv2)
 - Commit 33f167b — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
@@ -12,6 +14,4 @@
 - PR #4 MERGED — Update README.md (YiSanChen/SCSv2)
 - Commit bdf77b8 — Merge pull request #4 from YiSanChen/YiSanChen-patch-7 (YiSanChen/SCSv2)
 - PR #3 MERGED — Create .gitkeep (YiSanChen/SCSv2)
-- Commit fd68f67 — Merge pull request #3 from YiSanChen/YiSanChen-patch-5 (YiSanChen/SCSv2)
 - PR #2 MERGED — Create generate-activity.js (YiSanChen/SCSv2)
-- Commit e063358 — Merge pull request #2 from YiSanChen/YiSanChen-patch-4 (YiSanChen/SCSv2)
