@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2025-09-30T14:13:47.472Z",
+  "generatedAt": "2025-09-30T14:36:57.352Z",
   "sources": "YiSanChen/SCSv2\n",
   "items": [
+    {
+      "when": "2025-09-30T14:36:43Z",
+      "text": "Commit a1bed36 — Update README.md (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T14:35:48Z",
+      "text": "PR #13 OPEN — Update README.md (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T14:13:47Z",
+      "text": "Commit 5dd4ce1 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
+    },
     {
       "when": "2025-09-30T14:13:26Z",
       "text": "Commit 8f868e1 — Delete .github/.workflows directory (YiSanChen/SCSv2)"
@@ -43,16 +55,8 @@
       "text": "Commit d1b3c5d — Merge pull request #9 from YiSanChen/YiSanChen-patch-9 (YiSanChen/SCSv2)"
     },
     {
-      "when": "2025-09-30T13:18:25Z",
-      "text": "Commit 25ec1c7 — Update validate-markers.yml (YiSanChen/SCSv2)"
-    },
-    {
       "when": "2025-09-30T12:54:46Z",
       "text": "PR #8 OPEN — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T12:46:32Z",
-      "text": "Commit 364a55e — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
     },
     {
       "when": "2025-09-30T10:55:06Z",
@@ -65,10 +69,6 @@
     {
       "when": "2025-09-30T10:52:33Z",
       "text": "PR #5 MERGED — Create preview-readme.yml (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T10:51:29Z",
-      "text": "PR #1 MERGED — Add update-readme (YiSanChen/SCSv2)"
     },
     {
       "when": "2025-09-30T10:47:37Z",
