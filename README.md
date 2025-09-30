@@ -12,6 +12,8 @@
 
 ## 最近活動（自動更新區塊）
 <!-- RECENT_ACTIVITY:START -->
+- Commit a889780 — Update README.md (YiSanChen/SCSv2)
+- Commit 2ace6a4 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - Commit 8778ed8 — Update README.md (YiSanChen/SCSv2)
 - Commit 2143f96 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - Commit e6aead4 — Update README.md (YiSanChen/SCSv2)
@@ -23,8 +25,6 @@
 - Commit a9465f8 — Merge pull request #6 from YiSanChen/YiSanChen-patch-3 (YiSanChen/SCSv2)
 - Commit c593ca4 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - PR #5 MERGED — Create preview-readme.yml (YiSanChen/SCSv2)
-- Commit 033f195 — Merge pull request #5 from YiSanChen/YiSanChen-patch-2 (YiSanChen/SCSv2)
-- Commit cc07c46 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - PR #1 MERGED — Add update-readme (YiSanChen/SCSv2)
 - PR #4 MERGED — Update README.md (YiSanChen/SCSv2)
 - PR #3 MERGED — Create .gitkeep (YiSanChen/SCSv2)

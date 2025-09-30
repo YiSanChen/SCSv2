@@ -1,7 +1,15 @@
 {
-  "generatedAt": "2025-09-30T12:46:00.810Z",
+  "generatedAt": "2025-09-30T12:46:32.859Z",
   "sources": "YiSanChen/SCSv2\n",
   "items": [
+    {
+      "when": "2025-09-30T12:46:21Z",
+      "text": "Commit a889780 — Update README.md (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T12:46:00Z",
+      "text": "Commit 2ace6a4 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
+    },
     {
       "when": "2025-09-30T12:45:46Z",
       "text": "Commit 8778ed8 — Update README.md (YiSanChen/SCSv2)"
@@ -45,14 +53,6 @@
     {
       "when": "2025-09-30T10:52:33Z",
       "text": "PR #5 MERGED — Create preview-readme.yml (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T10:52:33Z",
-      "text": "Commit 033f195 — Merge pull request #5 from YiSanChen/YiSanChen-patch-2 (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T10:51:45Z",
-      "text": "Commit cc07c46 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
     },
     {
       "when": "2025-09-30T10:51:29Z",
