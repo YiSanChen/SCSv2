@@ -1,7 +1,15 @@
 {
-  "generatedAt": "2025-09-30T13:28:50.534Z",
+  "generatedAt": "2025-09-30T14:13:20.486Z",
   "sources": "YiSanChen/SCSv2\n",
   "items": [
+    {
+      "when": "2025-09-30T14:13:04Z",
+      "text": "Commit 82a9fec — Rename preview-readme.yml to .github/.workflows/preview-readme.yml (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T13:28:50Z",
+      "text": "Commit 3c8c6f7 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
+    },
     {
       "when": "2025-09-30T13:28:36Z",
       "text": "PR #10 MERGED — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)"
@@ -45,14 +53,6 @@
     {
       "when": "2025-09-30T12:46:00Z",
       "text": "Commit 2ace6a4 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T12:45:46Z",
-      "text": "Commit 8778ed8 — Update README.md (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T12:40:24Z",
-      "text": "Commit 2143f96 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
     },
     {
       "when": "2025-09-30T10:55:06Z",
