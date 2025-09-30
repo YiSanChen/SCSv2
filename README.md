@@ -11,6 +11,9 @@
 
 ## 最近活動（自動更新區塊）
 <!-- RECENT_ACTIVITY:START -->
+- PR #6 MERGED — Create validate-markers.yml (YiSanChen/SCSv2)
+- Commit a9465f8 — Merge pull request #6 from YiSanChen/YiSanChen-patch-3 (YiSanChen/SCSv2)
+- Commit c593ca4 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - PR #5 MERGED — Create preview-readme.yml (YiSanChen/SCSv2)
 - Commit 033f195 — Merge pull request #5 from YiSanChen/YiSanChen-patch-2 (YiSanChen/SCSv2)
 - Commit cc07c46 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
@@ -24,6 +27,4 @@
 - Commit e063358 — Merge pull request #2 from YiSanChen/YiSanChen-patch-4 (YiSanChen/SCSv2)
 - Commit 039cb06 — Update README.md (YiSanChen/SCSv2)
 - Commit 2922567 — Create .gitkeep (YiSanChen/SCSv2)
-- Commit 43c8b2f — Create generate-activity.js (YiSanChen/SCSv2)
-- Commit b339f6a — Create preview-readme.yml (YiSanChen/SCSv2)
 <!-- RECENT_ACTIVITY:END -->
