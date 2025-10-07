@@ -1,0 +1,58 @@
+  version:
+    name: Compute dynamic version tags
+    runs-on: ubuntu-latest
+    outputs:
+      base: ${{ steps.set.outputs.base }}
+      devTag: ${{ steps.set.outputs.devTag }}
+      stagingTag: ${{ steps.set.outputs.stagingTag }}
+      prodTag: ${{ steps.set.outputs.prodTag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch tags
+        run: git fetch --tags --force
+
+      # 讀取 package.json 的版本
+      - name: Read package.json version
+        id: pkg
+        run: |
+          if [ -f package.json ]; then
+            ver=$(jq -r '.version' package.json)
+            echo "pkg_version=$ver" >> $GITHUB_OUTPUT
+          else
+            echo "pkg_version=0.0.0" >> $GITHUB_OUTPUT
+          fi
+
+      # 若有 tag 則基於 tag bump，若沒有則從 package.json bump
+      - name: Compute next base version
+        id: compute
+        shell: bash
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -n "$last_tag" ]; then
+            last="${last_tag#v}"
+          else
+            last="${{ steps.pkg.outputs.pkg_version }}"
+          fi
+          bump="${{ github.event.inputs.bump }}"
+          [ -z "$bump" ] && bump="patch"
+          IFS='.' read -r MA MI PA <<< "$last"
+          case "$bump" in
+            major) MA=$((MA+1)); MI=0; PA=0;;
+            minor) MI=$((MI+1)); PA=0;;
+            patch|*) PA=$((PA+1));;
+          esac
+          next="v${MA}.${MI}.${PA}"
+          echo "next=$next" >> $GITHUB_OUTPUT
+
+      - name: Set env-specific tags
+        id: set
+        run: |
+          base="${{ steps.compute.outputs.next }}"
+          runnum="${{ github.run_number }}"
+          echo "base=$base" >> $GITHUB_OUTPUT
+          echo "devTag=${base}-dev.${runnum}" >> $GITHUB_OUTPUT
+          echo "stagingTag=${base}-rc.${runnum}" >> $GITHUB_OUTPUT
+          echo "prodTag=${base}" >> $GITHUB_OUTPUT
