@@ -13,6 +13,10 @@
 
 ## 最近活動（自動更新區塊）
 <!-- RECENT_ACTIVITY:START -->
+- PR #21 MERGED — Create deploy-pipeline.yml (YiSanChen/SCSv2)
+- Commit 35fc47e — Merge pull request #21 from YiSanChen/SCSv2-deploy-pipeline-1 (YiSanChen/SCSv2)
+- Commit 1659898 — Create deploy-pipeline.yml (YiSanChen/SCSv2)
+- Commit 4e9691f — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
 - PR #20 MERGED — Update validate-markers.yml (YiSanChen/SCSv2)
 - Commit 18d3a9c — Merge pull request #20 from YiSanChen/YiSanChen-patch-12 (YiSanChen/SCSv2)
 - Commit db7da08 — Update validate-markers.yml (YiSanChen/SCSv2)
@@ -24,14 +28,10 @@
 - PR #16 CLOSED — Update README.md (YiSanChen/SCSv2)
 - PR #15 CLOSED — Create preview-test (YiSanChen/SCSv2)
 - Commit b83ac4d — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
-- Commit 5e69466 — Delete preview-test (YiSanChen/SCSv2)
-- Commit 7621195 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)
-- Commit d3400c2 — Create preview-test (YiSanChen/SCSv2)
 - PR #14 OPEN — Create marker-test (YiSanChen/SCSv2)
 - PR #13 CLOSED — Update README.md (YiSanChen/SCSv2)
 - PR #10 MERGED — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)
 - PR #9 MERGED — Update validate-markers.yml (YiSanChen/SCSv2)
 - PR #8 OPEN — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)
-- PR #7 MERGED — Create pull_request_template.md (YiSanChen/SCSv2)
 <!-- RECENT_ACTIVITY:END -->
 

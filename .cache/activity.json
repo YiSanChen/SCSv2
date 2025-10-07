@@ -1,7 +1,23 @@
 {
-  "generatedAt": "2025-09-30T18:21:13.179Z",
+  "generatedAt": "2025-10-07T07:29:12.084Z",
   "sources": "YiSanChen/SCSv2,YiSanChen/SkillCheckSystem",
   "items": [
+    {
+      "when": "2025-10-07T07:28:50Z",
+      "text": "PR #21 MERGED — Create deploy-pipeline.yml (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-10-07T07:28:50Z",
+      "text": "Commit 35fc47e — Merge pull request #21 from YiSanChen/SCSv2-deploy-pipeline-1 (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-10-07T07:27:22Z",
+      "text": "Commit 1659898 — Create deploy-pipeline.yml (YiSanChen/SCSv2)"
+    },
+    {
+      "when": "2025-09-30T18:21:13Z",
+      "text": "Commit 4e9691f — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
+    },
     {
       "when": "2025-09-30T18:20:55Z",
       "text": "PR #20 MERGED — Update validate-markers.yml (YiSanChen/SCSv2)"
@@ -47,18 +63,6 @@
       "text": "Commit b83ac4d — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
     },
     {
-      "when": "2025-09-30T14:44:20Z",
-      "text": "Commit 5e69466 — Delete preview-test (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T14:43:15Z",
-      "text": "Commit 7621195 — chore: update README recent activity [skip ci] (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T14:43:03Z",
-      "text": "Commit d3400c2 — Create preview-test (YiSanChen/SCSv2)"
-    },
-    {
       "when": "2025-09-30T14:41:02Z",
       "text": "PR #14 OPEN — Create marker-test (YiSanChen/SCSv2)"
     },
@@ -77,10 +81,6 @@
     {
       "when": "2025-09-30T12:54:46Z",
       "text": "PR #8 OPEN — Rename validate-markers.yml to .github/workflows/validate-markers.yml (YiSanChen/SCSv2)"
-    },
-    {
-      "when": "2025-09-30T10:55:06Z",
-      "text": "PR #7 MERGED — Create pull_request_template.md (YiSanChen/SCSv2)"
     }
   ]
 }
