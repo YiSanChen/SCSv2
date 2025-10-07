@@ -1,11 +1,65 @@
-name: CI/CD Deployment Pipeline
+name: CI/CD Deployment Pipeline (Step 3 - permissions & environments)
+
 on:
   workflow_dispatch:
-jobs:
-  noop:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "bootstrap"
+
+# 預設最小權限（Read）
 permissions:
-  contents: write
-  deployments: write
+  contents: read
+
+# 避免同一分支重複觸發造成重疊
+concurrency:
+  group: pipeline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-environments:
+    name: "Check env: ${{ matrix.env }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [dev, staging, production]
+    # 關鍵：把 job 綁到對應的 Environment（會套用該 env 的 vars/secrets 與保護規則）
+    environment: ${{ matrix.env }}
+    steps:
+      - name: Show environment-scope values (no secret leakage)
+        run: |
+          echo "ENV=${{ matrix.env }}"
+          echo "RELEASE_NOTE=${{ vars.RELEASE_NOTE }}"
+          if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+            echo "SLACK_WEBHOOK_URL is set ✅"
+          else
+            echo "SLACK_WEBHOOK_URL is NOT set ⚠️"
+          fi
+
+  build-and-test:
+    name: "Build & Test (placeholder)"
+    runs-on: ubuntu-latest
+    needs: check-environments
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Placeholder build
+        run: |
+          echo "Run your actual build/test here."
+          echo "This job intentionally keeps READ-only permissions."
+
+  prod-permission-gate-dryrun:
+    name: "Production gate & write-permission dry-run"
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    environment: production  # 這裡會觸發 Required reviewers 審核
+    permissions:
+      contents: write
+      deployments: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify token works (read-only API call)
+        run: |
+          gh --version
+          gh api rate_limit >/dev/null
+          echo "GITHUB_TOKEN is usable. Elevated permissions here but no write performed."
