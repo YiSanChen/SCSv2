@@ -1,0 +1,14 @@
+{
+  "name": "activity-log-demo",
+  "version": "1.0.0",
+  "description": "Demo project for CI/CD pipeline testing",
+  "main": "index.js",
+  "scripts": {
+    "lint": "echo 'Linting placeholder...'",
+    "test": "echo 'Running tests...'",
+    "build": "echo 'Building project...'"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
