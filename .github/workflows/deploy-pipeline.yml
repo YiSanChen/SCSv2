@@ -1,65 +1,116 @@
-name: CI/CD Deployment Pipeline (Step 3 - permissions & environments)
+name: CI/CD Deployment Pipeline (Step 4 - version & build)
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
+    inputs:
+      bump:
+        description: "SemVer bump type (patch|minor|major)"
+        required: false
+        default: "patch"
 
-# 預設最小權限（Read）
+# 預設最小權限（之後部署 job 再提升）
 permissions:
   contents: read
 
-# 避免同一分支重複觸發造成重疊
+# 避免同分支重複執行
 concurrency:
   group: pipeline-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  check-environments:
-    name: "Check env: ${{ matrix.env }}"
+  # 版本號：從最後 tag 推出下一版（預設 patch，可改 minor/major）
+  version:
+    name: Compute dynamic version tags
     runs-on: ubuntu-latest
+    outputs:
+      base: ${{ steps.set.outputs.base }}
+      devTag: ${{ steps.set.outputs.devTag }}
+      stagingTag: ${{ steps.set.outputs.stagingTag }}
+      prodTag: ${{ steps.set.outputs.prodTag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch tags
+        run: git fetch --tags --force
+      - name: Compute next base version
+        id: compute
+        shell: bash
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          last="${last_tag#v}"
+          bump="${{ github.event.inputs.bump }}"
+          [ -z "$bump" ] && bump="patch"
+          IFS='.' read -r MA MI PA <<< "$last"
+          case "$bump" in
+            major) MA=$((MA+1)); MI=0; PA=0;;
+            minor) MI=$((MI+1)); PA=0;;
+            patch|*) PA=$((PA+1));;
+          esac
+          next="v${MA}.${MI}.${PA}"
+          echo "next=$next" >> $GITHUB_OUTPUT
+      - name: Set env-specific tags
+        id: set
+        run: |
+          base="${{ steps.compute.outputs.next }}"
+          runnum="${{ github.run_number }}"
+          echo "base=$base" >> $GITHUB_OUTPUT
+          echo "devTag=${base}-dev.${runnum}" >> $GITHUB_OUTPUT
+          echo "stagingTag=${base}-rc.${runnum}" >> $GITHUB_OUTPUT
+          echo "prodTag=${base}" >> $GITHUB_OUTPUT
+
+  # 建置 + 測試 + 產物（矩陣跑 18/20；只在 20 打包）
+  build-and-test:
+    name: Build & Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    needs: version
     strategy:
       fail-fast: false
       matrix:
-        env: [dev, staging, production]
-    # 關鍵：把 job 綁到對應的 Environment（會套用該 env 的 vars/secrets 與保護規則）
-    environment: ${{ matrix.env }}
-    steps:
-      - name: Show environment-scope values (no secret leakage)
-        run: |
-          echo "ENV=${{ matrix.env }}"
-          echo "RELEASE_NOTE=${{ vars.RELEASE_NOTE }}"
-          if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
-            echo "SLACK_WEBHOOK_URL is set ✅"
-          else
-            echo "SLACK_WEBHOOK_URL is NOT set ⚠️"
-          fi
-
-  build-and-test:
-    name: "Build & Test (placeholder)"
-    runs-on: ubuntu-latest
-    needs: check-environments
+        node: [18, 20]
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Placeholder build
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Install deps
+        shell: bash
         run: |
-          echo "Run your actual build/test here."
-          echo "This job intentionally keeps READ-only permissions."
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+      - name: Lint (if present)
+        run: npm run lint --if-present
+      - name: Test (if present)
+        run: npm test --if-present -- --ci
+      - name: Build (if present)
+        run: npm run build --if-present
+      - name: Package artifact (only on Node 20)
+        if: matrix.node == 20
+        run: zip -r build.zip .
+      - name: Upload artifact (only on Node 20)
+        if: matrix.node == 20
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: build.zip
 
-  prod-permission-gate-dryrun:
-    name: "Production gate & write-permission dry-run"
+  # （檢視用）把版本資訊列印出來，方便等會兒部署引用
+  show-version:
+    name: Show computed tags
     runs-on: ubuntu-latest
-    needs: build-and-test
-    environment: production  # 這裡會觸發 Required reviewers 審核
-    permissions:
-      contents: write
-      deployments: write
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    needs: [version, build-and-test]
     steps:
-      - uses: actions/checkout@v4
-      - name: Verify token works (read-only API call)
-        run: |
-          gh --version
-          gh api rate_limit >/dev/null
-          echo "GITHUB_TOKEN is usable. Elevated permissions here but no write performed."
+      - run: |
+          echo "Base:     ${{ needs.version.outputs.base }}"
+          echo "Dev Tag:  ${{ needs.version.outputs.devTag }}"
+          echo "Stage Tag:${{ needs.version.outputs.stagingTag }}"
+          echo "Prod Tag: ${{ needs.version.outputs.prodTag }}"
