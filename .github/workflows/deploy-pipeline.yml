@@ -61,9 +61,8 @@ jobs:
           echo "stagingTag=${base}-rc.${runnum}" >> $GITHUB_OUTPUT
           echo "prodTag=${base}" >> $GITHUB_OUTPUT
 
-  # 建置 + 測試 + 產物（矩陣跑 18/20；只在 20 打包）
   build-and-test:
-    name: Build & Test (Node ${{ matrix.node }})
+    name: "Build & Test (Node ${{ matrix.node }})"
     runs-on: ubuntu-latest
     needs: version
     strategy:
@@ -74,29 +73,56 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+
+      - id: detect
+        name: Detect package manager
+        shell: bash
+        run: |
+          if [ -f package.json ]; then
+            echo "has_node=true" >> $GITHUB_OUTPUT
+            if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+              echo "has_lock=true" >> $GITHUB_OUTPUT
+            else
+              echo "has_lock=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "has_node=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Use Node.js
+        if: steps.detect.outputs.has_node == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - name: Install deps
+
+      - name: Install deps (npm ci if lock, else npm install)
+        if: steps.detect.outputs.has_node == 'true'
         shell: bash
         run: |
-          if [ -f package-lock.json ]; then
+          if [ "${{ steps.detect.outputs.has_lock }}" = "true" ]; then
             npm ci
           else
             npm install
           fi
+
       - name: Lint (if present)
+        if: steps.detect.outputs.has_node == 'true'
         run: npm run lint --if-present
+
       - name: Test (if present)
+        if: steps.detect.outputs.has_node == 'true'
         run: npm test --if-present -- --ci
+
       - name: Build (if present)
+        if: steps.detect.outputs.has_node == 'true'
         run: npm run build --if-present
-      - name: Package artifact (only on Node 20)
+
+      - name: Package artifact (zip whole repo)
         if: matrix.node == 20
         run: zip -r build.zip .
-      - name: Upload artifact (only on Node 20)
+
+      - name: Upload artifact
         if: matrix.node == 20
         uses: actions/upload-artifact@v4
         with:
