@@ -1,0 +1,11 @@
+name: CI/CD Deployment Pipeline
+on:
+  workflow_dispatch:
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "bootstrap"
+permissions:
+  contents: write
+  deployments: write
